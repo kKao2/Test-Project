@@ -66,7 +66,7 @@ export default function App() {
             });
       }
       return () => ignore = true;
-   }, [status])
+   }, [status, username, password])
 
    if (status !== "Logged in") {
       return (
