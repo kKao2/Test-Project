@@ -1,0 +1,73 @@
+* {box-sizing:border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+img {vertical-align: middle;}
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1s;
+} 
+@keyframes fade {
+    from {opacity: 0.4}
+    to {opacity: 1}
+}
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 32px;
+    width: 100%;
+    text-align: center;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: transparent;
+    border: none;
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.dot-container {
+    position: absolute;
+    bottom: 12px;
+    text-align: center;
+    width: 100%;
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    border: none;
+    transition: 0.2s;
+    /* animation: fade 6s; */
+}
+.active, .dot:hover {
+    background-color: #717171;
+}  
+form {
+    width: 60%;
+}
