@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useReducer, useRef, useState } from "react";
-import counterReducer, { initialCounter } from "./counterReducer.tsx";
+import counterReducer, { initialCounter, ACTIONTYPE } from "./counterReducer.tsx";
 import Button from "./Button.tsx";
 import { StateCounterContext, DispatchCounterContext, ThemeContext, AuthorContext } from "./Context.tsx";
 import Modal from "./Modal.tsx";
@@ -33,7 +33,7 @@ export default function App() {
   const author = "Nguyễn Tiến Thành";
 
   // -------------- INTERVAL FUNCTION -------------- //
-  const setIntervalCount = useCallback((ref, dispatch): number => {
+  const setIntervalCount = useCallback((ref: React.MutableRefObject<number | null>, dispatch: React.Dispatch<ACTIONTYPE>): number => {
     ref.current = window.setInterval(() => {
       dispatch({
         type: "count",
