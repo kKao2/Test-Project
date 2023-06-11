@@ -1,51 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./login.css";
 import FormBox from "./FormBox";
-
-function resetAnimation(ref) {
-  let myPromise = new Promise((resolve) => {
-    ref.current.style.animation = "none";
-    setTimeout(() => {
-      resolve("feedback-scale-animation .8s 2 alternate");
-    }, 10)
-  })
-  myPromise.then((result) => ref.current.style.animation = result);
-}
 
 export default function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("Home");
   const feedbackRef = useRef(null);
+  const [isInValid, setIsInValid] = useState(true);
   let usernameValid = /^[a-zA-Z0-9]{4,}$/.test(username);
   let passwordValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password);
-  let isInValid;
-  if (!usernameValid || !passwordValid) {
-    isInValid = true;
-  } else {
-    isInValid = false;
-  }
-
-  function logIn(e) {
-    e.preventDefault();
-    if (isInValid === false) {
-      setStatus("Fetching");
-    } else {
-      resetAnimation(feedbackRef);
-    }
-  }
-  function logOut() {
-    setUsername("");
-    setPassword("");
-    setStatus("Home");
-  }
+  
+  const resetAnimation = useCallback((ref) => {
+    let myPromise = new Promise((resolve) => {
+      ref.current.style.animation = "none";
+      setTimeout(() => {
+        resolve("feedback-scale-animation .8s 2 alternate");
+      }, 10)
+    })
+    myPromise.then((result) => ref.current.style.animation = result);
+  });
 
   useEffect(() => {
     let ignore = false;
     if (status === "Fetching") {
-      fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      fetch("https://dummyjson.com/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username: username,
           password: password,
@@ -67,6 +48,29 @@ export default function App() {
     }
     return () => ignore = true;
   }, [status, username, password])
+  
+  useEffect(() => {
+    if (!usernameValid || !passwordValid) {
+      setIsInValid(true);
+    } else {
+      setIsInValid(false);
+    }
+  }, [usernameValid, passwordValid])
+
+  function logIn(e) {
+    e.preventDefault();
+    if (isInValid === false) {
+      setStatus("Fetching");
+    } else {
+      resetAnimation(feedbackRef);
+    }
+  }
+  function logOut() {
+    setUsername("");
+    setPassword("");
+    setStatus("Home");
+  }
+
 
   if (status !== "Logged in") {
     return (
