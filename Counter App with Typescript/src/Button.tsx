@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { ThemeContext, StateCounterContext } from "./Context.tsx";
 
 type ButtonType = { 
@@ -6,10 +6,12 @@ type ButtonType = {
   handleOnClick: (() => void) | (() => string)
 } 
 
-export default function Button({ content, handleOnClick }: ButtonType) {
+function Button({ content, handleOnClick }: ButtonType) {
   const theme = useContext(ThemeContext);
   const stateCounter = useContext(StateCounterContext);
   return (
     <button onClick={() => handleOnClick()}>{content}</button>
   )
 }
+
+export default memo(Button);

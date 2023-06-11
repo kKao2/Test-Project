@@ -1,16 +1,18 @@
-import React, { forwardRef, memo, useContext } from "react"
+import React, { forwardRef, useContext } from "react"
 import { AuthorContext } from "./Context.tsx";
 
-const Modal = forwardRef<HTMLDivElement, { handleOnClick: () => void }>(({ handleOnClick }, ref) => {
+type ModalType = { handleOnClick: () => void, children: JSX.Element }
+
+const Modal = forwardRef<HTMLDivElement, ModalType>(({ handleOnClick, children }, ref) => {
   const author = useContext(AuthorContext);
   return (
-    <div className="modal-container" ref={ref}>
-      <div className="modal-box">
+    <div className="modal-container">
+      <div className="modal-box" ref={ref}>
         <span className="close-btn" onClick={() => handleOnClick()}>&#215;</span>
-        <p style={{ padding: "32px 12px" }}>{author}</p>
+        {children}
       </div>
     </div>
   )
 })
 
-export default memo(Modal);
+export default Modal;

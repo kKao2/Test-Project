@@ -3,10 +3,12 @@ import counterReducer, { initialCounter, ACTIONTYPE } from "./counterReducer.tsx
 import Button from "./Button.tsx";
 import { StateCounterContext, DispatchCounterContext, ThemeContext, AuthorContext } from "./Context.tsx";
 import Modal from "./Modal.tsx";
+import CSS from "csstype";
 
 
 export default function App() {
   //========================== STATE ==========================//
+
   // Reducer for app //
   const [stateCounter, dispatchCounter] = useReducer(counterReducer, initialCounter);
 
@@ -30,7 +32,7 @@ export default function App() {
   const modalRef = useRef<HTMLDivElement>(null); 
 
   // Modal Content //
-  const author = "Nguyễn Tiến Thành";
+  const author: string = "Nguyễn Tiến Thành";
 
   // -------------- INTERVAL FUNCTION -------------- //
   const setIntervalCount = useCallback((ref: React.MutableRefObject<number | null>, dispatch: React.Dispatch<ACTIONTYPE>): number => {
@@ -44,6 +46,7 @@ export default function App() {
   }, [stateCounter.amount]);
 
   //========================== FUNCTION ==========================//
+
   // -------------- TIME PASSED EFFECT -------------- //
   useEffect(() => {
     timeRef.current = window.setInterval(() => {
@@ -93,7 +96,17 @@ export default function App() {
 
   // -------------- TOGGLE MODAL -------------- //
   function toogleModal(): void {
-    setShowModal(modal => !modal);
+    if (showModal === false) {
+      setShowModal(modal => !modal);
+    } else {
+      modalRef.current!.style.animation = "";
+      setTimeout(() => {
+        modalRef.current!.style.animation = "zoomOut .4s";
+        setTimeout(() => {
+          setShowModal(modal => !modal);
+        }, 200);
+      }, 10);
+    }
   }
 
   return (
@@ -119,7 +132,9 @@ export default function App() {
             <button className="credit-btn" onClick={() => toogleModal()}>Modal</button>
             {showModal && (
               <AuthorContext.Provider value={author}>
-                <Modal ref={modalRef} handleOnClick={toogleModal} />
+                <Modal ref={modalRef} handleOnClick={toogleModal}>
+                  <p style={{ padding: "32px 12px" }}>{author}</p>
+                </Modal>
               </AuthorContext.Provider> 
             )}
           </div>
