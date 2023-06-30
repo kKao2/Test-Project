@@ -4,7 +4,7 @@
 
 ***
 
-### **React+TypeScript Cheatsheets**
+### Project: **React+TypeScript Cheatsheets**
 
 This project is based on [this website](https://react-typescript-cheatsheet.netlify.app/).
 
