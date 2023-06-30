@@ -1,0 +1,44 @@
+type AppProps &#61; &#123;
+  message&#58; string&#59;
+  count&#58; number&#59;
+  disabled&#58; boolean&#59;
+  &#47;&#42;&#42; array of a type&#33; &#42;&#47;
+  names&#58; string&#91;&#93;&#59;
+  &#47;&#42;&#42; string literals to specify exact string values, with a union type to join them together &#42;&#47;
+  status&#58; "waiting" &#124; "success"&#59;
+  &#47;&#42;&#42; an object with known properties (but could have more at runtime) &#42;&#47;
+  obj&#58; &#123;
+    id&#58; string&#59;
+    title&#58; string&#59;
+  }&#59;
+  &#47;&#42;&#42; array of objects&#33; (common) &#42;&#47;
+  objArr&#58; &#123;
+    id&#58; string&#59;
+    title&#58; string&#59;
+  }&#91;&#93;&#59;
+  &#47;&#42;&#42; any non-primitive value - can't access any properties (NOT COMMON but useful as placeholder) &#42;&#47;
+  obj2&#58; object&#59;
+  &#47;&#42;&#42; an interface with no required properties - (NOT COMMON, except for things like &#39;React.Component&#60;&#123;}, State&#62;&#39;) &#42;&#47;
+  obj3&#58; &#123;&#125;&#59;
+  &#47;&#42;&#42; a dict object with any number of properties of the same type &#42;&#47;
+  dict1&#58; &#123;
+    &#91;key&#58; string&#93;&#58; MyTypeHere&#59;
+  &#125;&#59;
+  dict2&#58; Record&#60;string, MyTypeHere&#62;&#59; &#47;&#47; equivalent to dict1
+  &#47;&#42;&#42; function that doesn't take or return anything (VERY COMMON) &#42;&#47;
+  onClick&#58; () &#61;&#62; void&#59;
+  &#47;&#42;&#42; function with named prop (VERY COMMON) &#42;&#47;
+  onChange&#58; (id&#58; number) &#61;&#62; void&#59;
+  &#47;&#42;&#42; function type syntax that takes an event (VERY COMMON) &#42;&#47;
+  onChange&#58; (event&#58; React.ChangeEvent&#60;HTMLInputElement&#62;) &#61;&#62; void&#59;
+  &#47;&#42;&#42; alternative function type syntax that takes an event (VERY COMMON) &#42;&#47;
+  onClick(event&#58; React.MouseEvent&#60;HTMLButtonElement&#62;)&#58; void&#59;
+  &#47;&#42;&#42; any function as long as you don't invoke it (not recommended) &#42;&#47;
+  onSomething&#58; Function&#59;
+  &#47;&#42;&#42; an optional prop (VERY COMMON&#33;) &#42;&#47;
+  optional?&#58; OptionalType&#59;
+  &#47;&#42;&#42; when passing down the state setter function returned by &#39;useState&#39; to a child component. &#39;number&#39; is an example, swap out with whatever the type of your state &#42;&#47;
+  setState&#58; React.Dispatch&#60;React.SetStateAction&#60;number&#62;&#62;&#59;
+&#125;&#59;
+
+

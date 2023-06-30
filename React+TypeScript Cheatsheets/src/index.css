@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  :root {
+    --code-orange: rgb(255, 203, 107);
+    --code-blue: rgb(130, 170, 255);
+    --code-green: rgb(195, 232, 141);
+    --code-violet: rgb(199, 146, 234);
+    --code-light-blue: rgb(137, 221, 255);
+    --code-gray: rgb(105, 112, 152);
+  }
+
+  .button-blue {
+    @apply border border-sky-500 text-sky-500 transition-colors hover:bg-sky-500 hover:text-neutral-100 dark:hover:text-black;
+  }
+  .button-white {
+    @apply border border-neutral-500 text-black transition-colors hover:bg-zinc-700 hover:text-white dark:border-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-black;
+  }
+  .normal-link {
+    @apply cursor-pointer hover:text-sky-500 hover:underline;
+  }
+
+  /* --------- Menu List ---------*/
+  .menu-button {
+    @apply relative w-full rounded px-3.5 py-1 text-left font-semibold transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-700/70;
+  }
+  .menu-open {
+    transition: max-height 1s;
+  }
+  .menu-close {
+    transition: max-height 0.8s;
+  }
+
+  /* --------- Prose ---------*/
+  .normal-prose {
+    @apply prose min-w-full pt-5 text-black dark:text-neutral-100;
+  }
+
+  /* --------- Code ---------*/
+  .code {
+    @apply select-all bg-neutral-200 text-neutral-700 dark:bg-neutral-700/60 dark:text-neutral-300;
+  }
+
+  /* --------- HTML Scroll Bar Dark ---------*/
+  html::-webkit-scrollbar {
+    @apply w-3;
+  }
+  html::-webkit-scrollbar-track {
+    @apply bg-neutral-700;
+  }
+  html::-webkit-scrollbar-thumb {
+    @apply bg-neutral-500/60;
+  }
+  html::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400/50;
+  }
+  html::-webkit-scrollbar-thumb:active {
+    @apply bg-neutral-400/70;
+  }
+
+  /* --------- Code Scroll Bar ---------*/
+  pre::-webkit-scrollbar {
+    @apply h-2;
+  }
+  pre::-webkit-scrollbar-track {
+    @apply bg-neutral-700;
+  }
+  pre::-webkit-scrollbar-thumb {
+    @apply bg-neutral-500/60 rounded-full;
+  }
+  pre::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400/50;
+  }
+  pre::-webkit-scrollbar-thumb:active {
+    @apply bg-neutral-400/70;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
