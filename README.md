@@ -20,7 +20,7 @@ Materials that I have used to build this website:
 
 * Tailwind CSS (this is the best, I swear)
 
-IMPORTANT NOTE: This is just a practice homework_.
+IMPORTANT NOTE: This is just a practice homework.
 
 ***
 
