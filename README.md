@@ -1,4 +1,4 @@
-## This is a folder which all my demo project storage
+## This is a folder which all my demo projects storage
 
 ##### I am going to learn to use GIT
 
